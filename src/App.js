@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { connect } from 'react-redux';
+import ProjectCard from './ProjectCard';
 
-function App() {
+const App = ({ cartCount }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>Simple Redux Demo</h1>
+        <p>Cart Count: {cartCount}</p>
       </header>
+      <main>
+        <ProjectCard name="Project 1" price="10" />
+        <ProjectCard name="Project 2" price="20" />
+        <ProjectCard name="Project 3" price="30" />
+      </main>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = state => ({
+  cartCount: state.project.cartCount
+});
+
+export default connect(mapStateToProps)(App);
